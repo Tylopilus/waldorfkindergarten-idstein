@@ -35,18 +35,20 @@ function Main() {
           </div>
         </div>
       </section>
-      <section className="shadow rounded-[2rem] py-6 w-[fit-content] px-8 mx-8 -mt-48 bg-primary">
-        <p className="w-full max-w-[60ch]">
-          1987 aus einer Elterninitiative gegründet, versteht sich unser Verein
-          als Anlaufstelle für Gleichgesinnte. Wir gehen davon aus, dass unsere
-          Kinder vorwiegend durch Nachahmung lernen. Darum gestalten wir das
-          Erlebnisfeld im Kindergarten so, dass die Kinder sinnvolle und
-          nachvollziehbare Tätigkeiten der Erwachsenen vor Augen haben. Wichtig
-          ist uns, den Kindern Geborgenheit zu geben und individuelle
-          Entwicklung zuzulassen. Wir laden Sie ein, uns kennenzulernen und mit
-          uns gemeinsam den Kindergarten und die Zukunft unserer Kinder zu
-          gestalten.
-        </p>
+      <section className="px-8">
+        <div className="shadow rounded-[2rem] py-6 w-[fit-content] px-8 mx-auto -mt-48 bg-primary">
+          <p className="w-full max-w-[60ch]">
+            1987 aus einer Elterninitiative gegründet, versteht sich unser
+            Verein als Anlaufstelle für Gleichgesinnte. Wir gehen davon aus,
+            dass unsere Kinder vorwiegend durch Nachahmung lernen. Darum
+            gestalten wir das Erlebnisfeld im Kindergarten so, dass die Kinder
+            sinnvolle und nachvollziehbare Tätigkeiten der Erwachsenen vor Augen
+            haben. Wichtig ist uns, den Kindern Geborgenheit zu geben und
+            individuelle Entwicklung zuzulassen. Wir laden Sie ein, uns
+            kennenzulernen und mit uns gemeinsam den Kindergarten und die
+            Zukunft unserer Kinder zu gestalten.
+          </p>
+        </div>
       </section>
     </main>
   );
