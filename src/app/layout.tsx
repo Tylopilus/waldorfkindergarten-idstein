@@ -23,7 +23,15 @@ export default function RootLayout({
       */}
         <head />
 
-        <body className={raleway.variable}>{children}</body>
+        <body className={`bg-background ${raleway.variable} `}>
+          {children}
+
+          <div className="px-12 relative w-full ">
+            <div>
+              <div className="h-screen  max-w-[1144px] mx-auto fixed inset-0 left-8 right-8 -z-10 bg-white"></div>
+            </div>
+          </div>
+        </body>
       </html>
     </>
   );

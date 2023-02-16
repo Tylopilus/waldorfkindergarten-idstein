@@ -50,6 +50,7 @@ function Main() {
           </p>
         </div>
       </section>
+      <section>{/* <Aktuelles /> */}</section>
     </main>
   );
 }
