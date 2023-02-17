@@ -1,3 +1,4 @@
+import { Aktuelles } from '@/components/Aktuelles';
 import Image from 'next/image';
 
 export default function Home() {
@@ -18,7 +19,7 @@ function Main() {
     <main>
       <section className="w-screen bg-gradient1 py-24 pb-72 px-8 rounded-br-[95px]">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="text-white">
+          <h1 className="text-white max-w-[563px]">
             Willkommen bei dem Walldorfkindergarten Idstein
           </h1>
           <p className="text-white">
@@ -50,7 +51,9 @@ function Main() {
           </p>
         </div>
       </section>
-      <section>{/* <Aktuelles /> */}</section>
+      <section className="px-8 mt-12">
+        <Aktuelles />
+      </section>
     </main>
   );
 }

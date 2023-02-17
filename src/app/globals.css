@@ -4,7 +4,13 @@
 
 @layer base {
   h1 {
-    @apply font-primary font-bold text-2xl leading-[1.5em] tracking-[.09em] sm:leading-[auto] sm:text-5xl;
+    @apply font-primary font-bold text-2xl leading-[1.5em] tracking-[.09em] sm:leading-[normal] sm:text-5xl sm:tracking-normal;
+  }
+  h2 {
+    @apply font-primary font-bold text-xl leading-[1.5em] tracking-[.09em] sm:leading-[normal] sm:text-[2.5rem] sm:tracking-normal;
+  }
+  h3 {
+    @apply font-primary font-bold	text-lg leading-[1.5em] tracking-[.09em] sm:font-semibold sm:leading-[normal] sm:tracking-[.04em];
   }
   p {
     @apply font-primary font-medium text-sm leading-7 tracking-[.035em] sm:text-xl sm:leading-10;
