@@ -44,7 +44,7 @@ export default function RootLayout({
 }
 function Header() {
   return (
-    <header className='absolute top-0 left-0 right-0 isolate z-20 w-full max-w-screen-xl bg-black/20 py-4 px-8 text-black backdrop-blur-sm sm:fixed sm:left-[unset] sm:right-[unset] sm:text-white'>
+    <header className='absolute top-0 left-0 right-0 isolate z-20 w-full max-w-[1440px] bg-black/20 py-4 px-8 text-black backdrop-blur-sm sm:fixed sm:left-[unset] sm:right-[unset] sm:text-white'>
       <div className='grid grid-cols-[auto_1fr_auto] '>
         <Image
           className='col-start-1 col-end-1'
