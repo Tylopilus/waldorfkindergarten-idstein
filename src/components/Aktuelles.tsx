@@ -1,3 +1,4 @@
+import { LinkButton } from './Button';
 import { NewsTeaser } from './NewsTeaser';
 
 export function Aktuelles() {
@@ -18,6 +19,9 @@ export function Aktuelles() {
           imgSrc="https://images.unsplash.com/photo-1453342664588-b702c83fc822?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=faces&w=326&h=315&q=80"
         />
       </div>
+      <LinkButton href="/aktuelles" secondary>
+        Weitere Meldungen →
+      </LinkButton>
     </div>
   );
 }

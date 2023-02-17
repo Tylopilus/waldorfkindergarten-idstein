@@ -16,7 +16,11 @@ export function NewsTeaser(props: TeaserProps) {
         <div className="text-secondary font-medium text-sm leading-loose tracking-[0.035em]">
           {props.date}
         </div>
-        <Link href={props.url}>Mehr erfahren →</Link>
+        <Link
+          href={props.url}
+          className="block mt-4 leading-loose tracking=[.035em] font-medium text-sm">
+          Mehr erfahren →
+        </Link>
       </div>
     </div>
   );

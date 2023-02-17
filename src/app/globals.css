@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply font-primary;
+  }
   h1 {
     @apply font-primary font-bold text-2xl leading-[1.5em] tracking-[.09em] sm:leading-[normal] sm:text-5xl sm:tracking-normal;
   }
