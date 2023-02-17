@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import { links } from '../app/navlinks';
 
 export function Navigation() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -28,19 +29,15 @@ export function Navigation() {
         </svg>
       </button>
       <ul
-        className={`absolute inset-0 h-screen w-full flex-row gap-4 bg-white sm:relative sm:flex sm:h-auto sm:w-auto sm:bg-transparent ${
-          isNavExpanded ? 'block' : 'hidden'
+        className={`absolute inset-0 h-screen w-full flex-col items-center justify-center gap-12 bg-white text-center text-4xl sm:relative sm:flex sm:h-auto sm:w-auto sm:flex-row sm:gap-4 sm:bg-transparent sm:text-base ${
+          isNavExpanded ? 'flex' : 'hidden'
         }`}
       >
-        <li>
-          <Link href='/angebote'>Angebote</Link>
-        </li>
-        <li>
-          <Link href='/ueber-uns'>Über uns</Link>
-        </li>
-        <li>
-          <Link href='/kontakt'>Kontakt</Link>
-        </li>
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href}>{link.title}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
