@@ -9,7 +9,7 @@ export function Navigation() {
   return (
     <nav className='isolate col-start-2 col-end-2 flex items-center justify-end'>
       <button
-        className={`z-10 block sm:hidden ${
+        className={`z-20 block sm:hidden ${
           isNavExpanded ? 'text-black' : 'text-white'
         }`}
         onClick={() => setIsNavExpanded(!isNavExpanded)}
