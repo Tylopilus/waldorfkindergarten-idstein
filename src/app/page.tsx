@@ -1,4 +1,6 @@
 import { Aktuelles } from '@/components/Aktuelles';
+import { LinkButton } from '@/components/Button';
+import { TextStage } from '@/components/TextStage';
 import Image from 'next/image';
 
 export default function Home() {
@@ -28,7 +30,7 @@ function Main() {
             der Erwachsenen um das Kind herum – das macht einen
             Waldorfkindergarten so unverwechselbar.
           </p>
-          <div className="grid grid-cols-2 grid-rows-2 ">
+          <div className="grid grid-cols-2 grid-rows-2 mt-2">
             <Image src={'/images/image1.jpg'} width={300} height={300} alt="" />
             <Image src={'/images/image2.jpg'} width={300} height={300} alt="" />
             <Image src={'/images/image3.jpg'} width={300} height={300} alt="" />
@@ -37,8 +39,8 @@ function Main() {
         </div>
       </section>
       <section className="px-8">
-        <div className="shadow rounded-[2rem] py-6 w-[fit-content] px-8 mx-auto -mt-48 bg-primary">
-          <p className="w-full max-w-[60ch]">
+        <TextStage className="-mt-56">
+          <p className="w-full max-w-[60ch] px-2">
             1987 aus einer Elterninitiative gegründet, versteht sich unser
             Verein als Anlaufstelle für Gleichgesinnte. Wir gehen davon aus,
             dass unsere Kinder vorwiegend durch Nachahmung lernen. Darum
@@ -49,10 +51,26 @@ function Main() {
             kennenzulernen und mit uns gemeinsam den Kindergarten und die
             Zukunft unserer Kinder zu gestalten.
           </p>
-        </div>
+        </TextStage>
       </section>
       <section className="px-8 mt-12">
         <Aktuelles />
+      </section>
+      <section className="mt-12">
+        <div className="bg-gradient2 h-auto aspect-[390/175]" />
+        <div className="px-4">
+          <TextStage className="-mt-28">
+            <div className="flex flex-col gap-4">
+              <h2>Kontakt</h2>
+              <p>
+                Wir öffnen auch regelmäßig unsere Türen für interessierte
+                Familien. Wenn Sie an einem Kennenlernnachmittag teilnehmen
+                möchten, nehmen Sie bitte Kontakt zu uns auf.
+              </p>
+              <LinkButton href="/kontakt">Zum Kontaktformular →</LinkButton>
+            </div>
+          </TextStage>
+        </div>
       </section>
     </main>
   );

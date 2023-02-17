@@ -16,7 +16,7 @@
     @apply font-primary font-bold	text-lg leading-[1.5em] tracking-[.09em] sm:font-semibold sm:leading-[normal] sm:tracking-[.04em];
   }
   p {
-    @apply font-primary font-medium text-sm leading-7 tracking-[.035em] sm:text-xl sm:leading-10;
+    @apply font-primary font-medium text-sm leading-loose tracking-[.035em] sm:text-xl sm:leading-10;
   }
 }
 @layer components {

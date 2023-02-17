@@ -14,7 +14,7 @@ export function LinkButton(props: ButtonProps) {
 				${
           props.secondary
             ? 'text-black border border-black'
-            : 'text-white bg-gradient2'
+            : 'text-white bg-gradient1'
         }`}>
         {props.children}
       </Link>
