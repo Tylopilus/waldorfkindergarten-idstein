@@ -2,6 +2,7 @@ import { Aktuelles } from '@/components/Aktuelles';
 import { LinkButton } from '@/components/Button';
 import { TextStage } from '@/components/TextStage';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -76,5 +77,25 @@ function Main() {
   );
 }
 function Footer() {
-  return <footer></footer>;
+  return (
+    <footer className="bg-gradient3 rounded-tr-[6rem] px-8 py-9 mt-12">
+      <div className="grid grid-cols-[auto_1fr_auto]">
+        <Image
+          className="col-start-1 col-end-1"
+          src={'/waldorf-logo.png'}
+          alt=""
+          width={155}
+          height={59}
+        />
+        <ul className="col-start-3 col-end-3 flex flex-col gap-4 text-white">
+          <li>
+            <Link href="/impressum">Impressum</Link>
+          </li>
+          <li>
+            <Link href="/datenschutz">Datenschutz</Link>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  );
 }
