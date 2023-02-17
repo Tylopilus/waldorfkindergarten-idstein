@@ -7,6 +7,7 @@ export default function Head() {
         name="description"
         content="Internetseite des Waldorfkindergartens Idstein"
       />
+      <meta name="robots" content="noindex, nofollow" />
       <link rel="icon" href="/favicon.ico" />
     </>
   );
