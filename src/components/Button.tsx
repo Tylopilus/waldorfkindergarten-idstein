@@ -4,18 +4,20 @@ type ButtonProps = {
   href: string;
   children: React.ReactNode;
   secondary?: boolean;
+  className?: string;
 };
 export function LinkButton(props: ButtonProps) {
   return (
-    <div className="py-4 mt-4">
+    <div className={`mt-4 py-4 ${props.className}`}>
       <Link
         href={props.href}
-        className={`font-bold text-xl leading-[normal] flex items-center justify-center py-4 px-6 rounded-2xl
+        className={`flex items-center justify-center rounded-2xl py-4 px-6 text-xl font-bold leading-[normal]
 				${
           props.secondary
-            ? 'text-black border border-black'
-            : 'text-white bg-gradient1'
-        }`}>
+            ? 'border border-black text-black'
+            : 'bg-gradient1 text-white'
+        }`}
+      >
         {props.children}
       </Link>
     </div>

@@ -75,9 +75,9 @@ function Main() {
         <Aktuelles />
       </section>
       <section className='mt-12'>
-        <div className='aspect-[390/175] h-auto bg-gradient2' />
+        <div className='h-[175px] bg-gradient2 sm:h-[300px]' />
         <div className='px-4'>
-          <TextStage className='-mt-28'>
+          <TextStage className='-mt-28 sm:-mt-56 sm:max-w-[80%] sm:px-32'>
             <div className='flex flex-col gap-4'>
               <h2>Kontakt</h2>
               <p>
