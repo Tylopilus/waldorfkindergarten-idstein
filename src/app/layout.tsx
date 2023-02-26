@@ -64,13 +64,13 @@ function Footer() {
     <footer className='mt-12 rounded-tr-[6rem] bg-gradient3 px-8 py-9'>
       <div className='grid grid-cols-[auto_1fr_auto]'>
         <Image
-          className='col-start-1 col-end-1'
+          className='col-start-1 col-end-1 row-start-1'
           src={'/waldorf-logo.png'}
           alt=''
           width={155}
           height={59}
         />
-        <ul className='col-start-3 col-end-3 flex flex-col gap-4 text-white'>
+        <ul className='col-start-3 col-end-3 flex flex-col items-center justify-center gap-4 text-white sm:col-start-1 sm:row-start-1 sm:flex-row'>
           <li>
             <Link href='/impressum'>Impressum</Link>
           </li>
