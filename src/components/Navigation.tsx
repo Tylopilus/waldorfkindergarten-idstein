@@ -2,9 +2,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { links } from '../app/navlinks';
+import { useSelectedLayoutSegment } from 'next/navigation';
 
 export function Navigation() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const activeSegment = useSelectedLayoutSegment();
 
   return (
     <nav className='isolate col-start-2 col-end-2 flex items-center justify-end'>
@@ -12,7 +14,10 @@ export function Navigation() {
         className={`z-20 block sm:hidden ${
           isNavExpanded ? 'text-black' : 'text-white'
         }`}
-        onClick={() => setIsNavExpanded(!isNavExpanded)}
+        onClick={() => {
+          document.querySelector('body')?.classList.toggle('overflow-hidden');
+          setIsNavExpanded(!isNavExpanded);
+        }}
       >
         {/* icon from Heroicons.com */}
         <svg
@@ -29,16 +34,46 @@ export function Navigation() {
         </svg>
       </button>
       <ul
-        className={`absolute inset-0 h-screen w-full flex-col items-center justify-center gap-12 bg-white text-center text-4xl sm:relative sm:flex sm:h-auto sm:w-auto sm:flex-row sm:gap-4 sm:bg-transparent sm:text-base ${
+        className={cn(
+          `absolute inset-0 h-screen w-full flex-col items-center justify-center gap-12 overflow-y-auto overscroll-y-contain bg-white text-center text-4xl
+          sm:relative sm:flex sm:h-auto sm:w-auto sm:flex-row sm:gap-4 sm:bg-transparent sm:text-base`,
           isNavExpanded ? 'flex' : 'hidden'
-        }`}
+        )}
       >
         {links.map((link) => (
           <li key={link.href}>
-            <Link href={link.href}>{link.title}</Link>
+            <Navlink props={{ activeSegment, ...link }} />
           </li>
         ))}
       </ul>
     </nav>
   );
 }
+
+function cn(...classes: string[]) {
+  console.log(classes);
+  return classes.filter(Boolean).join(' ');
+}
+type NavlinkProps = {
+  props: {
+    activeSegment: string | null;
+    href: string;
+    targetSegment: string | null;
+    title: string;
+  };
+};
+const Navlink: React.FC<NavlinkProps> = ({ props }) => {
+  const match = props.targetSegment === props.activeSegment;
+
+  return (
+    <Link
+      className={cn(
+        'block rounded-lg py-1 px-4 hover:bg-[hsl(165,57%,30%)]',
+        match ? 'bg-[hsl(165,57%,19%)] text-white' : ''
+      )}
+      href={props.href}
+    >
+      {props.title}
+    </Link>
+  );
+};
