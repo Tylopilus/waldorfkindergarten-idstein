@@ -51,7 +51,6 @@ export function Navigation() {
 }
 
 function cn(...classes: string[]) {
-  console.log(classes);
   return classes.filter(Boolean).join(' ');
 }
 type NavlinkProps = {
@@ -68,7 +67,7 @@ const Navlink: React.FC<NavlinkProps> = ({ props }) => {
   return (
     <Link
       className={cn(
-        'block rounded-lg py-1 px-4 hover:bg-[hsl(165,57%,30%)]',
+        'block rounded-lg py-1 px-4 hover:bg-[hsl(165,57%,30%)] hover:text-white',
         match ? 'bg-[hsl(165,57%,19%)] text-white' : ''
       )}
       href={props.href}
