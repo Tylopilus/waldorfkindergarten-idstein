@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    height: 100%;
+  }
   body {
-    @apply font-primary;
+    @apply flex flex-col font-primary;
+    height: 100%;
   }
   h1 {
     @apply font-primary text-2xl font-bold leading-[1.5em] tracking-[.09em] sm:text-5xl sm:leading-[normal] sm:tracking-normal;

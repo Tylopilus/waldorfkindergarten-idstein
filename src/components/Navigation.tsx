@@ -42,7 +42,10 @@ export function Navigation() {
       >
         {links.map((link) => (
           <li key={link.href}>
-            <Navlink props={{ activeSegment, ...link }} />
+            <Navlink
+              props={{ activeSegment, ...link }}
+              setNavExpanded={setIsNavExpanded}
+            />
           </li>
         ))}
       </ul>
@@ -60,8 +63,9 @@ type NavlinkProps = {
     targetSegment: string | null;
     title: string;
   };
+  setNavExpanded: (value: boolean) => void;
 };
-const Navlink: React.FC<NavlinkProps> = ({ props }) => {
+const Navlink: React.FC<NavlinkProps> = ({ props, setNavExpanded }) => {
   const match = props.targetSegment === props.activeSegment;
 
   return (
@@ -71,6 +75,9 @@ const Navlink: React.FC<NavlinkProps> = ({ props }) => {
         match ? 'bg-[hsl(165,57%,19%)] text-white' : ''
       )}
       href={props.href}
+      onClick={() => {
+        setNavExpanded(false);
+      }}
     >
       {props.title}
     </Link>
