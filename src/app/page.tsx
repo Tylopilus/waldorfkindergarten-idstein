@@ -56,6 +56,7 @@ function Main() {
           </div>
         </div>
       </section>
+
       <section className='px-8 lg:mx-32 lg:px-0'>
         <TextStage className='relative z-10 -mt-56 lg:-mt-14'>
           <p className='w-full max-w-[60ch] px-2 lg:max-w-full lg:px-32'>
