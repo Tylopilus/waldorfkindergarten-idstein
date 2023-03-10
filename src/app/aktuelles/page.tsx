@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <main className='flex-1'>
       <StageHeader>
-        <h1 className='text-white'>Kontakt</h1>
+        <h1 className='text-white'>Aktuelles</h1>
       </StageHeader>
       <h1>test</h1>
     </main>
