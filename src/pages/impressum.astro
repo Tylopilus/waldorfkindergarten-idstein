@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Impressum · Waldorfkindergarten Idstein" description="Angaben nach §5 TMG.">
+	<section class="panel">
+		<h1>Impressum</h1>
+		<h2>Herausgeber</h2>
+		<p>
+			Verein zur Förderung des Waldorfkindergartens Idstein e.V.<br />
+			Limburger Straße 79<br />
+			65510 Idstein
+		</p>
+		<p>
+			Telefon 06126-92141 (Mo–Do 12:30–13:30 Uhr, Mi 9:00–12:00 Uhr)<br />
+			<a href="mailto:info@waldorfkindergarten-idstein.de">info@waldorfkindergarten-idstein.de</a><br />
+			<a href="http://www.waldorfkindergarten-idstein.de">www.waldorfkindergarten-idstein.de</a>
+		</p>
+		<p>Vereinsregister: Amtsgericht Idstein VR 5056</p>
+
+		<h2>Vorstand</h2>
+		<ul class="list">
+			<li><strong>Geschäftsführerin:</strong> Monika Igl</li>
+			<li><strong>Geschäftsführender Vorstand:</strong> Kristina Falke, Diana Pietsch, Barbara Simon, Janka Steininger</li>
+			<li><strong>Pädagogische Vorstandsmitglieder:</strong> Nicola Kirberg, Christel Claassen</li>
+		</ul>
+
+		<h2>Haftung / Nutzung</h2>
+		<p>
+			Der Waldorfkindergarten Idstein übernimmt keine Gewährleistung und keine Haftung im Zusammenhang mit der Nutzung
+			dieser Website oder für indirekte, zufällige oder Folgeschäden. Alle Informationen werden nach bestem Wissen zur
+			Verfügung gestellt; eine Garantie für Vollständigkeit, Richtigkeit und Aktualität kann nicht übernommen werden.
+			Angaben nach § 6 TDG und rechtliche Hinweise können jederzeit geändert werden. Wir sind grundsätzlich nicht bereit
+			und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+		</p>
+
+		<h2>Warenzeichen</h2>
+		<p>
+			Alle erwähnten Markenrechte stehen dem jeweiligen Rechtsinhaber zu. Die Publikation darf nur zu
+			Informationszwecken genutzt, nicht verändert und nicht zu gewerblichen oder politischen Zwecken verbreitet werden.
+			Copyright-Hinweise sind auf jeder Kopie zu erhalten. Alle Rechte vorbehalten.
+		</p>
+	</section>
+</Layout>
+
+<style>
+	h1 {
+		margin: 0 0 10px;
+		font-size: clamp(30px, 4.6vw, 40px);
+		color: #2d2d2d;
+	}
+
+	h2 {
+		margin: 12px 0 6px;
+		font-size: 20px;
+		color: #2d2d2d;
+	}
+
+	p {
+		margin: 0 0 10px;
+		color: #454546;
+		line-height: 1.6;
+	}
+
+	.panel {
+		background: rgba(255, 255, 255, 0.82);
+		border-radius: var(--radius);
+		border: 1px solid var(--line);
+		padding: 18px;
+		box-shadow: var(--shadow);
+		backdrop-filter: blur(8px);
+		display: grid;
+		gap: 6px;
+	}
+
+	.list {
+		padding-left: 18px;
+		margin: 0 0 6px;
+		display: grid;
+		gap: 6px;
+		color: #414142;
+	}
+
+	a {
+		color: var(--accent);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

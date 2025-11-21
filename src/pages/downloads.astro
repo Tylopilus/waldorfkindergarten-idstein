@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const downloads = [
+	{ label: 'Anmeldung Familiengruppe', file: '/downloads/anmeldung-familiengruppe.pdf' },
+	{ label: 'Anmeldung Wiegenstube', file: '/downloads/anmeldung-wiegenstube.pdf' },
+	{ label: 'Anmeldung Kindergarten U3', file: '/downloads/anmeldung-kindergarten-u3.pdf' },
+	{ label: 'Beitragsordnung ab August 2022', file: '/downloads/beitragsordnung-2022.pdf' },
+	{ label: 'Vereinssatzung', file: '/downloads/vereinssatzung.pdf' },
+];
+---
+
+<Layout title="Downloads & Formulare · Waldorfkindergarten Idstein" description="Anmeldeformulare, Beitragsordnung und Satzung.">
+	<section class="intro">
+		<p class="badge">Downloads</p>
+		<h1>Formulare & Unterlagen</h1>
+		<p class="lede">
+			Melden Sie sich gerne telefonisch oder per E-Mail für einen Platz oder laden Sie die passenden Formulare direkt
+			herunter. Für Fragen stehen wir jederzeit zur Verfügung.
+		</p>
+		<p class="contact">Telefon: 06126/92141 · <a href="mailto:info@waldorfkindergarten-idstein.de">info@waldorfkindergarten-idstein.de</a></p>
+	</section>
+
+	<section class="panel">
+		<h2>Anmeldeformulare & Infos</h2>
+		<ul class="list">
+			{downloads.map((item) => (
+				<li>
+					<a href={item.file} download>{item.label}</a>
+				</li>
+			))}
+		</ul>
+	</section>
+</Layout>
+
+<style>
+	h1 {
+		margin: 12px 0 6px;
+		font-size: clamp(30px, 4.6vw, 40px);
+		color: #2d2d2d;
+	}
+
+	h2 {
+		margin: 0 0 6px;
+		font-size: 22px;
+		color: #2d2d2d;
+	}
+
+	p {
+		margin: 0 0 10px;
+		color: #454546;
+		line-height: 1.6;
+	}
+
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 7px 12px;
+		border-radius: 999px;
+		background: rgba(161, 13, 89, 0.12);
+		color: #7a0c43;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		font-size: 12px;
+		margin: 0;
+	}
+
+	.lede {
+		font-size: 17px;
+	}
+
+	.contact {
+		font-weight: 700;
+		margin-top: 2px;
+	}
+
+	.panel {
+		background: rgba(255, 255, 255, 0.82);
+		border-radius: var(--radius);
+		border: 1px solid var(--line);
+		padding: 18px;
+		box-shadow: var(--shadow);
+		backdrop-filter: blur(8px);
+		display: grid;
+		gap: 8px;
+	}
+
+	.list {
+		margin: 6px 0 0;
+		padding-left: 18px;
+		display: grid;
+		gap: 8px;
+	}
+
+	.list a {
+		color: var(--accent);
+		text-decoration: none;
+		font-weight: 700;
+	}
+
+	.list a:hover {
+		text-decoration: underline;
+	}
+</style>

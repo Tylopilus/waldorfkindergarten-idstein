@@ -1,0 +1,43 @@
+---
+import watercolorScript from './watercolor-canvas.client.ts?url';
+const { variant = 'panel' } = Astro.props;
+const className = variant === 'page' ? 'watercolor-shell page-wash' : 'watercolor-shell';
+---
+
+<div class={className} aria-hidden="true">
+	<canvas id="watercolor-canvas"></canvas>
+</div>
+
+<script type="module" src={watercolorScript}></script>
+
+<style scoped>
+	.watercolor-shell {
+		position: relative;
+		width: 100%;
+		height: 360px;
+		border-radius: 18px;
+		overflow: hidden;
+		box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+		border: 1px solid var(--line);
+		background: #fffdf9;
+	}
+
+	.watercolor-shell.page-wash {
+		position: fixed;
+		inset: 0;
+		height: 140vh;
+		width: 100vw;
+		border: none;
+		box-shadow: none;
+		opacity: 0.55;
+		pointer-events: none;
+		background: transparent;
+		z-index: 0;
+	}
+
+	canvas {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+</style>

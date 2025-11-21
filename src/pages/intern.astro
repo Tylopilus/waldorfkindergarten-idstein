@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Intern · Waldorfkindergarten Idstein" description="Interner Bereich für Eltern.">
+	<section class="intro">
+		<p class="badge">Intern</p>
+		<h1>Interner Bereich</h1>
+		<p class="lede">
+			Hier stellen wir Elternbriefe und Materialien für unsere Familien bereit. Bitte melden Sie sich im Büro, wenn
+			Sie aktuelle Unterlagen per E-Mail erhalten möchten.
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Kontakt für Elternunterlagen</h2>
+		<p class="contact">
+			Telefon 06126-92141 (Mo–Do 12:30–13:30 Uhr, Mi 9:00–12:00 Uhr)<br />
+			<a href="mailto:info@waldorfkindergarten-idstein.de">info@waldorfkindergarten-idstein.de</a>
+		</p>
+		<p class="note">
+			Auf Wunsch senden wir Ihnen die neuesten Elternbriefe und Materialien digital zu.
+		</p>
+	</section>
+</Layout>
+
+<style>
+	h1 {
+		margin: 12px 0 6px;
+		font-size: clamp(30px, 4.6vw, 40px);
+		color: #2d2d2d;
+	}
+
+	h2 {
+		margin: 0 0 6px;
+		font-size: 22px;
+		color: #2d2d2d;
+	}
+
+	p {
+		margin: 0 0 10px;
+		color: #454546;
+		line-height: 1.6;
+	}
+
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 7px 12px;
+		border-radius: 999px;
+		background: rgba(161, 13, 89, 0.12);
+		color: #7a0c43;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		font-size: 12px;
+		margin: 0;
+	}
+
+	.lede {
+		font-size: 17px;
+	}
+
+	.panel {
+		background: rgba(255, 255, 255, 0.82);
+		border-radius: var(--radius);
+		border: 1px solid var(--line);
+		padding: 18px;
+		box-shadow: var(--shadow);
+		backdrop-filter: blur(8px);
+		display: grid;
+		gap: 8px;
+	}
+
+	.contact {
+		font-weight: 700;
+	}
+
+	.note {
+		color: #555;
+	}
+
+	a {
+		color: var(--accent);
+		text-decoration: none;
+		font-weight: 700;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

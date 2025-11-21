@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Datenschutzerklärung · Waldorfkindergarten Idstein" description="Informationen zur Verarbeitung personenbezogener Daten.">
+	<section class="panel">
+		<h1>Datenschutzerklärung</h1>
+		<p>
+			Wir freuen uns über Ihr Interesse an unserem Kindergarten. Datenschutz hat einen besonders hohen Stellenwert
+			für die Geschäftsleitung der Verein zur Förderung des Waldorfkindergartens Idstein e.V. Die Nutzung unserer
+			Website ist grundsätzlich ohne Angabe personenbezogener Daten möglich. Sofern besondere Services in Anspruch
+			genommen werden, kann eine Verarbeitung personenbezogener Daten erforderlich werden. In diesem Fall holen wir,
+			sofern keine gesetzliche Grundlage besteht, eine Einwilligung der betroffenen Person ein.
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Verantwortlicher</h2>
+		<p>
+			Verein zur Förderung des Waldorfkindergartens Idstein e.V.<br />
+			Limburger Straße 79, 65510 Idstein<br />
+			Tel.: 06126-92141 · <a href="mailto:info@waldorfkindergarten-idstein.de">info@waldorfkindergarten-idstein.de</a><br />
+			<a href="http://www.waldorfkindergarten-idstein.de">www.waldorfkindergarten-idstein.de</a>
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Erhebung und Zweck</h2>
+		<p>
+			Beim Aufruf unserer Seiten werden serverseitig u.a. Browsertyp, Betriebssystem, Referrer, Datum/Uhrzeit,
+			IP-Adresse, ISP und abgerufene Unterseiten protokolliert. Eine Zuordnung zu einer Person erfolgt nicht. Die
+			Daten dienen der Auslieferung von Inhalten, der technischen Stabilität, der Optimierung und zur
+			Strafverfolgung im Falle von Angriffen.
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Rechtsgrundlagen</h2>
+		<p>
+			Die Verarbeitung erfolgt je nach Zweck auf Basis von Art. 6 Abs. 1 lit. a DS-GVO (Einwilligung), lit. b
+			(Vertrag/Vorvertrag), lit. c (rechtliche Verpflichtung), lit. d (lebenswichtige Interessen) oder lit. f
+			(berechtigtes Interesse).
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Speicherdauer</h2>
+		<p>
+			Personenbezogene Daten werden nur solange gespeichert, wie es der Zweck oder gesetzliche Aufbewahrungsfristen
+			erfordern. Entfällt der Zweck oder läuft die Frist ab, werden Daten gelöscht oder gesperrt.
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Ihre Rechte</h2>
+		<ul class="list">
+			<li>Bestätigung, ob Daten verarbeitet werden</li>
+			<li>Auskunft über gespeicherte Daten und Empfänger</li>
+			<li>Berichtigung unrichtiger oder Vervollständigung unvollständiger Daten</li>
+			<li>Löschung oder Einschränkung der Verarbeitung im Rahmen gesetzlicher Vorgaben</li>
+			<li>Widerspruch gegen Verarbeitung auf Basis von Art. 6 Abs. 1 lit. e/f DS-GVO</li>
+			<li>Datenübertragbarkeit (Art. 20 DS-GVO)</li>
+			<li>Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft</li>
+		</ul>
+		<p>Zur Ausübung Ihrer Rechte können Sie sich jederzeit an uns wenden.</p>
+	</section>
+
+	<section class="panel">
+		<h2>Bewerbungen</h2>
+		<p>
+			Übermittelte Bewerbungsunterlagen verarbeiten wir zum Zweck der Abwicklung des Bewerbungsverfahrens. Bei
+			Absage löschen wir die Unterlagen zwei Monate nach Bescheid, sofern keine berechtigten Interessen entgegenstehen
+			(z.B. Beweispflicht nach AGG). Bei Einstellung werden die Daten für das Beschäftigungsverhältnis verarbeitet.
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Keine automatisierte Entscheidungsfindung</h2>
+		<p>Wir setzen keine automatisierten Entscheidungen einschließlich Profiling ein.</p>
+	</section>
+
+	<section class="panel">
+		<h2>Bereitstellung von Daten</h2>
+		<p>
+			Die Bereitstellung personenbezogener Daten kann gesetzlich oder vertraglich erforderlich sein oder zum Abschluss
+			eines Vertrages notwendig werden. Ohne Bereitstellung kann ein Vertragsabschluss ggf. nicht erfolgen. Wir
+			informieren im Einzelfall über Pflichtangaben.
+		</p>
+	</section>
+
+	<section class="panel">
+		<h2>Hinweis zur Streitbeilegung</h2>
+		<p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+	</section>
+</Layout>
+
+<style>
+	h1 {
+		margin: 0 0 10px;
+		font-size: clamp(30px, 4.6vw, 40px);
+		color: #2d2d2d;
+	}
+
+	h2 {
+		margin: 12px 0 6px;
+		font-size: 20px;
+		color: #2d2d2d;
+	}
+
+	p {
+		margin: 0 0 10px;
+		color: #454546;
+		line-height: 1.6;
+	}
+
+	.panel {
+		background: rgba(255, 255, 255, 0.82);
+		border-radius: var(--radius);
+		border: 1px solid var(--line);
+		padding: 18px;
+		box-shadow: var(--shadow);
+		backdrop-filter: blur(8px);
+		display: grid;
+		gap: 6px;
+	}
+
+	.list {
+		padding-left: 18px;
+		margin: 0 0 6px;
+		display: grid;
+		gap: 6px;
+		color: #414142;
+	}
+
+	a {
+		color: var(--accent);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

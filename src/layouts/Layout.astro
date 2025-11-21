@@ -1,22 +1,380 @@
+---
+const {
+	title = 'Waldorfkindergarten Idstein',
+	description = 'Waldorfpädagogik seit 1987 in Idstein',
+	layoutClass = '',
+} = Astro.props;
+
+const navLinks = [
+	{ href: '/', label: 'Start' },
+	{ href: '/gruppen', label: 'Gruppen' },
+	{ href: '/downloads', label: 'Downloads' },
+	{ href: '/kontakt', label: 'Kontakt' },
+];
+import WatercolorCanvas from '../components/watercolor-canvas.astro';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600&family=Quicksand:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
 	</head>
-	<body>
-		<slot />
+	<body class={`page ${layoutClass}`} data-wash-enabled="false">
+		<div class="background-wash">
+			<WatercolorCanvas variant="page" />
+		</div>
+		<header class="site-header collapsed">
+			<div class="brand">
+				<div class="brand-mark">
+					<img src="/waldorf-logo.png" alt="Waldorfkindergarten Idstein" />
+				</div>
+				<div>
+					<p class="eyebrow">Waldorfkindergarten Idstein e.V.</p>
+					<p class="tagline">Geborgenheit, Rhythmus, Gemeinschaft</p>
+				</div>
+			</div>
+			<nav class="nav">
+				{navLinks.map((item) => (
+					<a href={item.href}>{item.label}</a>
+				))}
+			</nav>
+		</header>
+		<main class="content">
+			<slot />
+		</main>
+		<footer class="site-footer">
+			<p>Waldorfkindergarten Idstein · Limburger Str. 79 · 65510 Idstein · 06126/92141</p>
+			<p><a href="mailto:info@waldorfkindergarten-idstein.de">info@waldorfkindergarten-idstein.de</a></p>
+			<div class="footer-links">
+				<a href="/impressum">Impressum</a>
+				<a href="/datenschutz">Datenschutz</a>
+				<a href="/intern">Intern</a>
+			</div>
+		</footer>
+		<button class="wash-toggle" type="button">Animierter Hintergrund an</button>
+		<script>
+			const body = document.body;
+			const toggle = document.querySelector('.wash-toggle');
+			const saved = localStorage.getItem('washEnabled') === 'true';
+
+			const applyState = (enabled) => {
+				body.dataset.washEnabled = enabled ? 'true' : 'false';
+				body.classList.toggle('wash-enabled', enabled);
+				localStorage.setItem('washEnabled', enabled ? 'true' : 'false');
+				if (toggle) toggle.textContent = enabled ? 'Animierter Hintergrund aus' : 'Animierter Hintergrund an';
+				if (enabled) {
+					if (window.__initWash) window.__initWash();
+				} else if (window.__stopWash) {
+					window.__stopWash();
+				}
+			};
+
+			applyState(saved);
+			if (toggle) {
+				toggle.addEventListener('click', () => {
+					const next = body.dataset.washEnabled !== 'true';
+					applyState(next);
+				});
+			}
+
+			// Expose a capture helper for the watercolor canvas on window.
+			window.captureWash = (opts = { delay: 800, scale: null, type: 'png', quality: 0.92, background: '#fdf6f9' }) => {
+				const { delay = 800, scale = null, type = 'png', quality = 0.92, background = '#fdf6f9' } = opts || {};
+				const ensureNextFrame = () =>
+					new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+				return new Promise(async (resolve, reject) => {
+					const wasEnabled = body.dataset.washEnabled === 'true';
+					if (!wasEnabled) applyState(true);
+					else if (window.__initWash) window.__initWash();
+
+					await ensureNextFrame();
+
+					setTimeout(async () => {
+						const canvas = document.querySelector('.watercolor-shell canvas');
+						if (!canvas) {
+							reject(new Error('No watercolor canvas found'));
+							if (!wasEnabled) applyState(false);
+							return;
+						}
+						try {
+							const host = canvas.parentElement;
+							if (host) {
+								const { clientWidth, clientHeight } = host as HTMLElement;
+								if (clientWidth && clientHeight && (canvas.width !== clientWidth || canvas.height !== clientHeight)) {
+									canvas.width = clientWidth;
+									canvas.height = clientHeight;
+								}
+							}
+
+							let target = canvas;
+
+							if (background) {
+								const composite = document.createElement('canvas');
+								composite.width = canvas.width;
+								composite.height = canvas.height;
+								const compositeCtx = composite.getContext('2d');
+								if (compositeCtx) {
+									compositeCtx.fillStyle = background;
+									compositeCtx.fillRect(0, 0, composite.width, composite.height);
+									compositeCtx.drawImage(canvas, 0, 0, composite.width, composite.height);
+								}
+								target = composite;
+							}
+
+							if (scale && scale > 0 && scale < 1) {
+								const off = document.createElement('canvas');
+								off.width = Math.max(1, Math.floor(target.width * scale));
+								off.height = Math.max(1, Math.floor(target.height * scale));
+								const ctx = off.getContext('2d');
+								ctx?.drawImage(target, 0, 0, off.width, off.height);
+								target = off;
+							}
+
+							const mime = type === 'jpg' || type === 'jpeg' ? 'image/jpeg' : 'image/png';
+							const dataUrl = mime === 'image/png' ? target.toDataURL(mime) : target.toDataURL(mime, quality);
+							resolve(dataUrl);
+							if (!wasEnabled) applyState(false);
+						} catch (e) {
+							reject(e);
+							if (!wasEnabled) applyState(false);
+						}
+					}, delay);
+				});
+			};
+		</script>
 	</body>
 </html>
 
 <style>
-	html,
+	:root {
+		--bg: #fff9f4;
+		--card: #fffefb;
+		--accent: #a10d59;
+		--accent-deep: #781246;
+		--muted: #5c5c5c;
+		--line: #f0e4da;
+		--radius: 18px;
+		--shadow: 0 14px 40px rgba(69, 41, 29, 0.08);
+		--texture: radial-gradient(circle at 8% 12%, rgba(255, 181, 207, 0.35), transparent 30%),
+			radial-gradient(circle at 88% 8%, rgba(174, 207, 239, 0.35), transparent 28%),
+			radial-gradient(circle at 16% 86%, rgba(251, 214, 151, 0.32), transparent 26%),
+			radial-gradient(circle at 90% 86%, rgba(174, 223, 187, 0.32), transparent 28%);
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
 	body {
 		margin: 0;
+		font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
+		background: url('/background-fallback.png') center/cover fixed #fdf6f9;
+		color: #2d2d2d;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	.background-wash {
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		pointer-events: none;
+		display: none;
+	}
+
+	.wash-enabled .background-wash {
+		display: block;
+	}
+
+	.page {
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: 32px 20px 96px;
+		position: relative;
+		z-index: 2;
+	}
+
+	.site-header,
+	.content,
+	.site-footer {
+		position: relative;
+		z-index: 2;
+	}
+
+	.site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		padding: 16px 20px;
+		border: 1px solid rgba(161, 13, 89, 0.2);
+		border-radius: var(--radius);
+		background: linear-gradient(145deg, rgba(161, 13, 89, 0.12), rgba(161, 13, 89, 0.05));
+		box-shadow: 0 12px 24px rgba(45, 26, 16, 0.08);
+		backdrop-filter: blur(10px);
+		z-index: 10;
+		transition: padding 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+
+	.brand-mark {
+		width: 138px;
+		height: 74px;
+		padding: 0;
+		border-radius: 18px;
+		background: transparent;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: none;
+	}
+
+	.brand-mark img {
 		width: 100%;
-		height: 100%;
+		height: auto;
+		object-fit: contain;
+		filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+	}
+
+	.eyebrow {
+		margin: 0;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 11px;
+		color: var(--accent-deep);
+		font-weight: 700;
+	}
+
+	.tagline {
+		margin: 2px 0 0;
+		color: var(--muted);
+		font-size: 14px;
+		font-family: 'Cormorant Infant', 'Times New Roman', serif;
+	}
+
+	.nav {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
+
+	.nav a {
+		text-decoration: none;
+		color: var(--accent-deep);
+		font-weight: 700;
+		padding: 10px 12px;
+		border-radius: 12px;
+		transition: background 0.15s ease, color 0.15s ease;
+	}
+
+	.nav a:hover {
+		background: rgba(161, 13, 89, 0.14);
+		color: #2d2d2d;
+	}
+
+	.site-header.collapsed {
+		padding: 8px 14px;
+		box-shadow: 0 8px 14px rgba(45, 26, 16, 0.06);
+		border-color: rgba(161, 13, 89, 0.14);
+		background: linear-gradient(145deg, rgba(161, 13, 89, 0.1), rgba(161, 13, 89, 0.04));
+	}
+
+	.site-header.collapsed .brand {
+		gap: 10px;
+	}
+
+	.site-header.collapsed .brand-mark {
+		width: 114px;
+		height: 60px;
+	}
+
+	.site-header.collapsed .nav a {
+		padding: 8px 10px;
+	}
+
+	.content {
+		margin-top: 32px;
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
+	}
+
+	.site-footer {
+		margin-top: auto;
+		padding: 20px 0 0;
+		color: var(--muted);
+		font-size: 14px;
+		text-align: center;
+		font-family: 'Cormorant Infant', 'Times New Roman', serif;
+	}
+
+	.footer-links {
+		display: inline-flex;
+		gap: 14px;
+		margin-top: 6px;
+	}
+
+	.wash-toggle {
+		position: fixed;
+		right: 16px;
+		bottom: 18px;
+		z-index: 5;
+		padding: 10px 14px;
+		border-radius: 12px;
+		border: 1px solid rgba(161, 13, 89, 0.35);
+		background: rgba(255, 255, 255, 0.88);
+		color: #2d2d2d;
+		font-weight: 700;
+		cursor: pointer;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+		backdrop-filter: blur(6px);
+	}
+
+	.wash-toggle:hover {
+		background: rgba(255, 255, 255, 0.95);
+	}
+
+	.site-footer a {
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.site-footer a:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 720px) {
+		.site-header {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.nav {
+			width: 100%;
+			justify-content: flex-start;
+		}
 	}
 </style>

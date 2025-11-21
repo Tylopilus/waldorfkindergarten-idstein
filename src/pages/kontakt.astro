@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Kontakt & Verein · Waldorfkindergarten Idstein"
+	description="Adresse, Kontakt und Vorstand des Waldorfkindergarten Idstein e.V."
+>
+	<section class="intro">
+		<p class="badge">Kontakt</p>
+		<h1>Wir freuen uns auf Ihre Nachricht</h1>
+		<p class="lede">
+			Fragen zu Anmeldung, Gruppen oder pädagogischen Themen? Melden Sie sich telefonisch oder per E-Mail – wir
+			antworten zeitnah.
+		</p>
+	</section>
+
+	<section class="panel grid">
+		<div>
+			<h2>Waldorfkindergarten Idstein</h2>
+			<p class="contact">Limburger Straße 79<br />65510 Idstein</p>
+			<p class="contact">
+				Telefon 06126-92141<br />
+				<span class="note">(Mo–Do 12:30–13:30 Uhr, Mi 9:00–12:00 Uhr)</span>
+			</p>
+			<p class="contact">
+				<a href="mailto:info@waldorfkindergarten-idstein.de">info@waldorfkindergarten-idstein.de</a>
+			</p>
+			<p class="contact"><a href="http://www.waldorfkindergarten-idstein.de">www.waldorfkindergarten-idstein.de</a></p>
+		</div>
+		<div>
+			<h2>Verein</h2>
+			<p class="small">Verein zur Förderung des Waldorfkindergartens Idstein e.V.</p>
+			<ul class="list">
+				<li><strong>Geschäftsführerin:</strong> Monika Igl</li>
+				<li>
+					<strong>Geschäftsführender Vorstand:</strong> Kristina Falke, Diana Pietsch, Barbara Simon, Janka
+					Steininger
+				</li>
+				<li><strong>Pädagogische Vorstandsmitglieder:</strong> Nicola Kirberg, Christel Claassen</li>
+				<li><strong>Vereinsregister:</strong> Amtsgericht Idstein VR 5056</li>
+			</ul>
+			<div class="links">
+				<a href="/downloads/vereinssatzung.pdf">Vereinssatzung (PDF)</a>
+				<a href="/downloads/beitragsordnung-2022.pdf">Beitragsordnung (PDF)</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	h1 {
+		margin: 12px 0 6px;
+		font-size: clamp(30px, 4.6vw, 40px);
+		color: #2d2d2d;
+	}
+
+	h2 {
+		margin: 0 0 6px;
+		font-size: 22px;
+		color: #2d2d2d;
+	}
+
+	p {
+		margin: 0 0 10px;
+		color: #454546;
+		line-height: 1.6;
+	}
+
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 7px 12px;
+		border-radius: 999px;
+		background: rgba(161, 13, 89, 0.12);
+		color: #7a0c43;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		font-size: 12px;
+		margin: 0;
+	}
+
+	.lede {
+		font-size: 17px;
+	}
+
+	.panel {
+		background: rgba(255, 255, 255, 0.82);
+		border-radius: var(--radius);
+		border: 1px solid var(--line);
+		padding: 18px;
+		box-shadow: var(--shadow);
+		backdrop-filter: blur(8px);
+		display: grid;
+		gap: 12px;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 18px;
+		align-items: start;
+	}
+
+	.contact {
+		font-weight: 700;
+	}
+
+	.note {
+		font-weight: 400;
+		color: #666;
+	}
+
+	.list {
+		margin: 0;
+		padding-left: 18px;
+		display: grid;
+		gap: 8px;
+		color: #414142;
+	}
+
+	.links {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		margin-top: 8px;
+	}
+
+	a {
+		color: var(--accent);
+		text-decoration: none;
+		font-weight: 700;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	.small {
+		font-size: 14px;
+		color: #666;
+		margin-bottom: 6px;
+	}
+</style>
