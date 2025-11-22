@@ -1,5 +1,4 @@
 ---
-import watercolorScript from './watercolor-canvas.client.ts?url';
 const { variant = 'panel' } = Astro.props;
 const className = variant === 'page' ? 'watercolor-shell page-wash' : 'watercolor-shell';
 ---
@@ -8,7 +7,7 @@ const className = variant === 'page' ? 'watercolor-shell page-wash' : 'watercolo
 	<canvas id="watercolor-canvas"></canvas>
 </div>
 
-<script type="module" src={watercolorScript}></script>
+<script type="module" src="/watercolor-canvas.client.js"></script>
 
 <style scoped>
 	.watercolor-shell {
