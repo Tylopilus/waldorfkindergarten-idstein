@@ -138,9 +138,17 @@ function init() {
 		const clock = new THREE.Clock();
 
 		function resize() {
-			const { clientWidth, clientHeight } = host;
-			renderer.setSize(clientWidth, clientHeight, false);
-			uniforms.u_resolution.value.set(clientWidth, clientHeight);
+			const width = host.clientWidth || window.innerWidth || 1;
+			const height = host.clientHeight || window.innerHeight || 1;
+			renderer.setSize(width, height, false);
+			uniforms.u_resolution.value.set(width, height);
+		}
+
+		function ensureSized(attempt = 0) {
+			resize();
+			if ((host.clientWidth === 0 || host.clientHeight === 0) && attempt < 5) {
+				requestAnimationFrame(() => ensureSized(attempt + 1));
+			}
 		}
 
 		let frameAccumulator = 0;
@@ -180,7 +188,10 @@ function init() {
 		}
 
 		window.addEventListener('resize', resize);
+		window.addEventListener('load', resize);
 		resize();
+		// Run follow-up resizes until the host has dimensions (covers initial mount).
+		requestAnimationFrame(() => ensureSized());
 		start();
 		controllers.push({ start, stop });
 	});

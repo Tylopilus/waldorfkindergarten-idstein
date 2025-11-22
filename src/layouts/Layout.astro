@@ -27,10 +27,10 @@ import WatercolorCanvas from '../components/watercolor-canvas.astro';
 			rel="stylesheet"
 		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-	</head>
-	<body class={`page ${layoutClass}`} data-wash-enabled="false">
+	<title>{title}</title>
+	<meta name="description" content={description} />
+</head>
+	<body class={`page wash-enabled ${layoutClass}`} data-wash-enabled="true">
 		<div class="background-wash">
 			<WatercolorCanvas variant="page" />
 		</div>
@@ -73,7 +73,6 @@ import WatercolorCanvas from '../components/watercolor-canvas.astro';
 		<script>
 			const body = document.body;
 			const toggle = document.querySelector('.wash-toggle');
-			const saved = localStorage.getItem('washEnabled') === 'true';
 
 			const applyState = (enabled) => {
 				body.dataset.washEnabled = enabled ? 'true' : 'false';
@@ -82,12 +81,17 @@ import WatercolorCanvas from '../components/watercolor-canvas.astro';
 				if (toggle) toggle.textContent = enabled ? 'Animierter Hintergrund aus' : 'Animierter Hintergrund an';
 				if (enabled) {
 					if (window.__initWash) window.__initWash();
+					// Force canvases to recalc size when enabling.
+					requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
 				} else if (window.__stopWash) {
 					window.__stopWash();
 				}
 			};
 
-			applyState(saved);
+			const storedValue = localStorage.getItem('washEnabled');
+			const initialEnabled = storedValue === null ? true : storedValue === 'true';
+
+			applyState(initialEnabled);
 			if (toggle) {
 				toggle.addEventListener('click', () => {
 					const next = body.dataset.washEnabled !== 'true';
