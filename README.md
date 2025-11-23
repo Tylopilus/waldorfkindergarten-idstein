@@ -1,46 +1,53 @@
-# Astro Starter Kit: Basics
+# Waldorfkindergarten Idstein Website
 
-```sh
-npm create astro@latest -- --template basics
-```
+Static Astro site for the Waldorfkindergarten Idstein e.V. with information for families, staff, and prospective parents. The site highlights the kindergarten’s pedagogical focus, group offerings, downloadable registration forms, and contact details, all set against a watercolor-inspired layout with an optional animated background.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Project Overview
 
-## 🚀 Project Structure
+- **Framework:** [Astro](https://astro.build/) with minimal client-side JavaScript (only for the watercolor background toggle and canvas animation).
+- **Pages:**
+  - `/` – Start page with hero content, program highlights, and a watercolor canvas accent.
+  - `/gruppen` – Overview of Wiegenstube, Familiengruppe, and Kindergarten group details.
+  - `/downloads` – Direct links to registration forms, fee schedule, and association statutes.
+  - `/kontakt` – Contact options, address, and opening hours.
+  - `/impressum`, `/datenschutz`, `/intern` – Legal notice, privacy policy, and internal link hub.
+- **Design tokens:** Typography uses Cormorant Infant (headings) and Quicksand (body), with accent color `#a10d59`. A background wash can be toggled via the “Animierter Hintergrund an/aus” button in the footer.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Getting Started
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+1. Install dependencies (Node 18+ recommended):
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+   ```bash
+   npm install
+   ```
 
-## 🧞 Commands
+2. Start the local dev server at `http://localhost:4321`:
 
-All commands are run from the root of the project, from a terminal:
+   ```bash
+   npm run dev
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+3. Build for production:
 
-## 👀 Want to learn more?
+   ```bash
+   npm run build
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+4. Preview the production build locally:
+
+   ```bash
+   npm run preview
+   ```
+
+## Project Structure
+
+- `src/layouts/Layout.astro` – Global shell with header nav, footer, and watercolor toggle logic.
+- `src/pages/` – Individual routes for start page, groups, downloads, contact, legal pages, and internal links.
+- `src/components/` – Shared pieces like the watercolor canvas (`watercolor-canvas.astro` and `watercolor-canvas.client.ts`).
+- `public/` – Static assets, including PDFs linked from the downloads page and images like `logo-tinted.png` and `background-fallback.png`.
+
+## Conventions
+
+- Use semantic HTML and accessible labels; keep filenames lowercase with hyphens.
+- Keep styling consistent with the existing palette and typography.
+- Place new documents or media under `public/` and reference them with root-relative URLs (e.g., `/downloads/new-form.pdf`).
